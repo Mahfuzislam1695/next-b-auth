@@ -1,3 +1,20 @@
+"use client"
+
+import { getUsers } from "@/lib/api/users";
+import { toast } from "react-toastify";
+
 export default function Page() {
-    return <h1>Hello Next.js dashboart!</h1>
+    const fetchUsers = async () => {
+        try {
+            const users = await getUsers();
+            toast.success("Users fetched successfully!");
+            console.log(users);
+        } catch (error) {
+            toast.error("Failed to fetch users!");
+            console.error(error);
+        }
+    };
+
+
+    return <button className="cursor-pointer" onClick={fetchUsers}>Fetch Users</button>
 }
