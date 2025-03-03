@@ -1,6 +1,6 @@
 "use client"
 
-import { getUsers } from "@/lib/api/users";
+import { getUsers } from "@/api/users";
 import { toast } from "react-toastify";
 
 export default function Page() {
