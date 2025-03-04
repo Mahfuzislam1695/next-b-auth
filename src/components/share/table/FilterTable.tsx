@@ -1,7 +1,7 @@
 "use client";
 
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { IFilter } from "@/types/table/table.types";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../dialog";
 import { MdAdd } from "react-icons/md";
 
 export default function FilterTable({

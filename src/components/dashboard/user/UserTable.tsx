@@ -1,8 +1,8 @@
 import { IUserTableProps } from "@/types/user/user.types";
-import FilterTable from "@/components/ui/table/FilterTable";
-import TableContent from "@/components/ui/table/TableContent";
-import TablePagination from "@/components/ui/table/TablePagination";
 import AddUser from "./AddUser";
+import FilterTable from "@/components/share/table/FilterTable";
+import TableContent from "@/components/share/table/TableContent";
+import TablePagination from "@/components/share/table/TablePagination";
 
 const UserTable = ({
     table,

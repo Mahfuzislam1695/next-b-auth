@@ -1,4 +1,5 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../../ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
 
 interface CustomDialogProps {
     open: boolean;
