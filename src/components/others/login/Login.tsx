@@ -1,12 +1,73 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useAuth } from "@/hooks/useAuth";
+// import { useAuth } from "@/hooks/useAuth";
+// import { useAuth } from "@/hooks/useAuth";
+import { LoginFormData, loginSchema } from "@/schemas/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Github, Twitter } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 
 export default function Login() {
+    const router = useRouter();
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<LoginFormData>({
+        resolver: zodResolver(loginSchema),
+    });
+
+    const { mutate: login, isPending } = useAuth(() => {
+        reset();
+        router.push("/dashboard");
+    });
+
+    const onSubmit: SubmitHandler<LoginFormData> = (data) => {
+        login(data);
+    };
+
+    // const onSubmit = (data: LoginFormData) => {
+    //     alert(JSON.stringify(data));
+
+    //     fetch(
+    //         `http://localhost:3332/nest-b-auth/api/v1/auth/login`,
+    //         {
+    //             method: "POST",
+    //             headers: {
+    //                 "content-type": "application/json",
+    //             },
+    //             body: JSON.stringify(data),
+    //         }
+    //     )
+    //         .then((res) => {
+    //             console.log("res", res);
+
+    //             return res.json();
+    //         })
+    //         .then((data) => {
+    //             console.log("data", data);
+    //             if (data.success === true) {
+
+    //                 reset();
+
+    //             } else {
+
+    //             }
+    //         })
+    // };
+
     return (
         <div className="flex min-h-screen flex-col">
             <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -33,7 +94,7 @@ export default function Login() {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                         <div>
                             <Label htmlFor="email" className="block text-sm font-medium leading-6">
                                 Email address
@@ -41,13 +102,16 @@ export default function Login() {
                             <div className="mt-2">
                                 <Input
                                     id="email"
-                                    name="email"
                                     type="email"
                                     autoComplete="email"
                                     required
                                     className="block w-full rounded-[--radius] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                     placeholder="name@example.com"
+                                    {...register("email")}
                                 />
+                                {errors.email && (
+                                    <span className="error">{errors.email.message}</span>
+                                )}
                             </div>
                         </div>
 
@@ -65,12 +129,15 @@ export default function Login() {
                             <div className="mt-2">
                                 <Input
                                     id="password"
-                                    name="password"
                                     type="password"
                                     autoComplete="current-password"
                                     required
                                     className="block w-full rounded-[--radius] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                    {...register("password")}
                                 />
+                                {errors.password && (
+                                    <span className="error">{errors.password.message}</span>
+                                )}
                             </div>
                         </div>
 
@@ -89,7 +156,9 @@ export default function Login() {
                                 type="submit"
                                 className="w-full rounded-[--radius] bg-accent text-accent-foreground hover:bg-accent/90"
                             >
-                                Sign in
+
+                                {/* Sign in */}
+                                {isPending ? "Sign in..." : "Sign in"}
                             </Button>
                         </div>
                     </form>
