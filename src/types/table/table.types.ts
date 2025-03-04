@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from "react";
 
 export interface IFilter {
@@ -13,3 +14,7 @@ export interface IFilter {
     userName?: string;
     usersNumber?: number;
 }
+
+export interface ITable {
+    table: any;
+};

@@ -1,11 +1,7 @@
 import TooltipDiv from "@/components/share/tooltip/TooltipDiv";
+import { EditDataProps } from "@/types/user/user.types";
 import { ColumnDef } from "@tanstack/react-table";
 
-export interface EditDataProps {
-    name: string;
-    email: string;
-    gender: string;
-}
 
 export const getColumns = (handleEdit: (rowData: EditDataProps) => void): ColumnDef<EditDataProps>[] => [
     {

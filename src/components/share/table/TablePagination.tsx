@@ -14,11 +14,11 @@ export default function TablePagination({ table }: any) {
     return (
         <div className="">
             {table?.getRowModel().rows?.length > 0 && (
-                <div className="mx-2 flex flex-col items-center justify-between pagination-container p-4 gap-4 md:flex-row bg-[#F5F5F5] border-b-2 border-x-2 border-[#c7c7c7]">
+                <div className="mx-2 flex flex-col items-center justify-between pagination-container p-4 gap-4 md:flex-row bg-background-light border-b-2 border-x-2 border-border">
                     <div className="flex items-center gap-4">
-                        <p className="text-base text-[#444444]">Show:</p>
+                        <p className="text-base text-secondary">Show:</p>
                         <select
-                            className="w-16 px-1 py-2 border border-[#D4D4D4] bg-white !outline-none"
+                            className="w-16 px-1 py-2 border border-border bg-background !outline-none"
                             value={table.getState().pagination.pageSize}
                             onChange={(e) => {
                                 table.setPageSize(Number(e.target.value));
@@ -26,7 +26,7 @@ export default function TablePagination({ table }: any) {
                         >
                             {[5, 10].map((pageSize) => (
                                 <option
-                                    className="text-base text-[#444444]"
+                                    className="text-base text-secondary"
                                     key={pageSize}
                                     value={pageSize}
                                 >
@@ -39,7 +39,7 @@ export default function TablePagination({ table }: any) {
                         </select>
                     </div>
                     <div className="flex items-center gap-2">
-                        <p className="text-base text-[#444444]">Go to page:</p>
+                        <p className="text-base text-secondary">Go to page:</p>
                         <input
                             type="number"
                             min={1}
@@ -51,7 +51,7 @@ export default function TablePagination({ table }: any) {
                                     table.setPageIndex(newPage);
                                 }
                             }}
-                            className="border border-[#D4D4D4] p-1 w-16 !outline-none"
+                            className="border border-border p-1 w-16 !outline-none"
                         />
                     </div>
 
@@ -59,40 +59,33 @@ export default function TablePagination({ table }: any) {
                         <button
                             disabled={!table.getCanPreviousPage()}
                             onClick={() => table.setPageIndex(0)}
-                            className="disabled:opacity-25 disabled:cursor-not-allowed text-xl  rounded-full p-2 bg-[#388E3C]"
+                            className="disabled:opacity-25 disabled:cursor-not-allowed text-xl rounded-full p-2 bg-primary"
                         >
                             <BsFillSkipBackwardFill fontSize={18} className="text-white" />
-                            {/* <RxDoubleArrowLeft /> */}
-                            {/* {"<<"} */}
                         </button>
 
                         <button
                             disabled={!table.getCanPreviousPage()}
                             onClick={() => table.previousPage()}
-                            className="disabled:opacity-25 disabled:cursor-not-allowed text-xl  rounded-full p-2 bg-[#388E3C]"
+                            className="disabled:opacity-25 disabled:cursor-not-allowed text-xl rounded-full p-2 bg-primary"
                         >
                             <BsFillSkipStartFill fontSize={18} className="text-white" />
-                            {/* {"<"} */}
                         </button>
-                        {/* <div className="w-6 h-7 bg-white border border-gray-200 flex justify-center items-center">
-                    {pageIndex + 1}
-                </div> */}
+
                         <button
                             disabled={!table.getCanNextPage()}
                             onClick={() => table.nextPage()}
-                            className="disabled:opacity-25 disabled:cursor-not-allowed text-xl  rounded-full p-2 bg-[#388E3C]"
+                            className="disabled:opacity-25 disabled:cursor-not-allowed text-xl rounded-full p-2 bg-primary"
                         >
                             <BsFillSkipEndFill fontSize={18} className="text-white" />
-                            {/* {">"} */}
                         </button>
 
                         <button
                             disabled={!table.getCanNextPage()}
                             onClick={() => table.setPageIndex(pageCount - 1)}
-                            className="disabled:opacity-25 disabled:cursor-not-allowed text-xl  rounded-full p-2 bg-[#388E3C]"
+                            className="disabled:opacity-25 disabled:cursor-not-allowed text-xl rounded-full p-2 bg-primary"
                         >
                             <BsFillSkipForwardFill fontSize={18} className="text-white" />
-                            {/* {">>"} */}
                         </button>
                     </div>
                 </div>
