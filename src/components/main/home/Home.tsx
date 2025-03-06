@@ -43,9 +43,9 @@ export default function Home() {
                                 Log in
                             </Button>
                         </Link>
-                        <Link href="/signup">
+                        {/* <Link href="/signup">
                             <Button size="sm">Sign up</Button>
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </header>

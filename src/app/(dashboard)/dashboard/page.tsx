@@ -1,9 +1,14 @@
 "use client"
 
 import { getUsers } from "@/api/users";
+import { getUserInfo } from "@/services/auth.service";
 import { toast } from "react-toastify";
 
 export default function Page() {
+    const user = getUserInfo();
+
+    console.log("user", user);
+
     const fetchUsers = async () => {
         try {
             const users = await getUsers();

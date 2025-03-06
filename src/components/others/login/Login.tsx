@@ -5,8 +5,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
-// import { useAuth } from "@/hooks/useAuth";
-// import { useAuth } from "@/hooks/useAuth";
 import { LoginFormData, loginSchema } from "@/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Github, Twitter } from "lucide-react";

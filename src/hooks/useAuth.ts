@@ -8,7 +8,9 @@ export const useAuth = (onSuccess?: () => void) => {
   return useMutation({
     mutationFn: authService.login,
     onSuccess: (data) => {
-      storeUserInfo({ accessToken: data.accessToken });
+      console.log("data", data);
+
+      storeUserInfo({ accessToken: data.access_token });
       toast.success(data.message);
       if (onSuccess) {
         onSuccess();
