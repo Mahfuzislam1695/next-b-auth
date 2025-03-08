@@ -18,6 +18,13 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
             ),
         },
         {
+            label: "Demo",
+            href: "/demo",
+            icon: (
+                <LuLayoutDashboard className="text-neutral-200 h-5 w-5 flex-shrink-0" />
+            ),
+        },
+        {
             label: "User",
             href: "/users",
             icon: (
