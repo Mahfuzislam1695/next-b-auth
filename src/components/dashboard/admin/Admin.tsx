@@ -1,19 +1,16 @@
 "use client";
 import GenericTable from "@/components/share/table/GenericTable";
 import TableHeading from "@/components/share/table/TableHeading";
-
 import { getAdminColumns } from "@/lib/constants/tableColumns";
 import { rowValue } from "@/lib/redux/features/user/userSlice";
 import { useAppDispatch } from "@/lib/redux/hooks";
-import { EditDataProps } from "@/types/user/user.types";
 import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable } from "@tanstack/react-table";
 import { useState } from "react";
 import AddAdminUser from "./AddAdminUser";
 import CustomDialog from "@/components/share/dialog/CustomDialog";
 import EditAdminUser from "./EditAdminUser";
-import { useUserAdminData } from "@/hooks/useUserData";
-// import { useFetchData } from "@/hooks/useFetchData";
-// import { getBaseUrl } from "@/config/envConfig";
+import { useGet } from "@/hooks/useGet";
+import { EditDataProps } from "@/types/user/user.types";
 
 export default function Admin() {
     const [editModalOpen, setEditModalOpen] = useState(false);
@@ -23,17 +20,7 @@ export default function Admin() {
     const [columnVisibility, setColumnVisibility] = useState({});
     const dispatch = useAppDispatch();
 
-    const { isLoading, data: allAdminUserData, refetch } = useUserAdminData();
-
-    // const { isLoading, data:allAdminUserData, error, refetch } = useFetchData({
-    //     queryKey: 'userData',  // Can be a string or an array of strings
-    //     url: `${getBaseUrl()}/users`,
-    // });
-
-
-
-    console.log("allAdminUserData", allAdminUserData);
-
+    const { isLoading, data: allAdminUserData, refetch } = useGet<[]>("/users", ["allUserAdminData"]);
 
     const handleEdit = (rowData: EditDataProps) => {
         dispatch(rowValue(rowData));

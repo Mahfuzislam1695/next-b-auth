@@ -31,8 +31,6 @@ export interface IGenericTableProps {
 
 export interface EditDataProps {
     name: string;
-    email: string;
-    gender: string;
 }
 
 // export interface IFilter {

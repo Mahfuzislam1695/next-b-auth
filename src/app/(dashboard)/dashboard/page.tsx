@@ -1,25 +1,21 @@
-"use client"
 
-import { getUsers } from "@/api/users";
-import { getUserInfo } from "@/services/auth.service";
-import { toast } from "react-toastify";
+import Loader from "@/components/share/loader/Loader";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+export const metadata: Metadata = {
+    title: "Next-b-auth | Dashboard",
+};
+
 
 export default function Page() {
-    const user = getUserInfo();
-
-    console.log("user", user);
-
-    const fetchUsers = async () => {
-        try {
-            const users = await getUsers();
-            toast.success("Users fetched successfully!");
-            console.log(users);
-        } catch (error) {
-            toast.error("Failed to fetch users!");
-            console.error(error);
+    const DynamicDashboard = dynamic(
+        () => import("@/components/dashboard/dashboard/Dashboard"),
+        {
+            loading: () => <Loader />,
         }
-    };
-
-
-    return <button className="cursor-pointer" onClick={fetchUsers}>Fetch Users</button>
+    );
+    return (
+        <div><DynamicDashboard /></div>
+    )
 }
