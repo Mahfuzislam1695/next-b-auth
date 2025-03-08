@@ -5,10 +5,7 @@ export interface IUserEditProps {
 }
 
 // Interface for AddUser component
-export interface IUserAddProps {
-    setOpen: (open: boolean) => void;
-    refetch: () => void;
-}
+
 
 export interface IUserTableProps {
     table: object;
@@ -20,6 +17,23 @@ export interface IUserTableProps {
     allUserData: [];
     refetch: () => void;
 }
+
+export interface IGenericTableProps {
+    table: object;
+    isLoading: boolean;
+    filtering: string;
+    setFiltering: React.Dispatch<React.SetStateAction<string>>;
+    filterModalOpen: boolean;
+    setFilterModalOpen: (value: boolean) => void;
+    tableData: [];
+    refetch: () => void;
+    buttonName: string;
+    headerName: string;
+    userName: string;
+    addComponent: React.ReactNode;
+}
+
+
 
 export interface EditDataProps {
     name: string;

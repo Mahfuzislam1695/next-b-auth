@@ -18,3 +18,7 @@ export interface IFilter {
 export interface ITable {
     table: any;
 };
+
+export interface TableHeadingProps {
+    name: string;
+}

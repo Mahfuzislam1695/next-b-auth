@@ -2,13 +2,13 @@
 
 import { Input } from "@/components/share/form";
 import { UserFormData, UserSchema } from "@/schemas/user";
-import { IUserAddProps } from "@/types/user/user.types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { IAddComponentProps } from "@/types/global/global.types";
 // import { employeeTypes, genderData } from "@/lib/constants/formData";
 
-export default function AddUser({ setOpen, refetch }: IUserAddProps) {
+export default function AddUser({ setOpen, refetch }: IAddComponentProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const {

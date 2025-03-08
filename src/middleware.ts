@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 // Define protected routes and required roles
 const protectedRoutes: Record<string, string[]> = {
     "/dashboard": ["admin", "user"], // Both "admin" and "user" can access
-    "/users": ["admin"], // Only "admin" can access
+    "/admin": ["admin"], // Only "admin" can access
 };
 
 // Define the shape of the decoded JWT token

@@ -1,3 +1,15 @@
+import Loader from "@/components/share/loader/Loader";
+import dynamic from "next/dynamic";
+
+
 export default function Page() {
-    return <h1>Hello Next.js admin!</h1>
+    const DynamicAdmin = dynamic(
+        () => import("@/components/dashboard/admin/Admin"),
+        {
+            loading: () => <Loader />
+        }
+    );
+    return (
+        <div><DynamicAdmin /></div>
+    )
 }

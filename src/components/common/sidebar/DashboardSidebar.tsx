@@ -5,8 +5,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaUserCog } from "react-icons/fa";
+import { BiLogOutCircle } from "react-icons/bi";
 import { cn } from "@/lib/utils";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
+import { logout } from "@/services/auth.service";
 
 export function DashboardSidebar({ children }: { children: React.ReactNode }) {
     const links = [
@@ -18,8 +20,8 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
             ),
         },
         {
-            label: "Demo",
-            href: "/demo",
+            label: "Admin",
+            href: "/admin",
             icon: (
                 <LuLayoutDashboard className="text-neutral-200 h-5 w-5 flex-shrink-0" />
             ),
@@ -50,6 +52,15 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
                             {links.map((link, idx) => (
                                 <SidebarLink key={idx} link={link} />
                             ))}
+                            <div>
+                                <button
+                                    onClick={() => logout()}
+                                    className="flex gap-2 text-white hover:text-red-700 mt-1 py-2 rounded-md transition-all"
+                                >
+                                    <BiLogOutCircle className="h-5 w-5" />
+                                    {open && <span className="text-sm">Logout</span>}
+                                </button>
+                            </div>
                         </div>
                     </div>
 

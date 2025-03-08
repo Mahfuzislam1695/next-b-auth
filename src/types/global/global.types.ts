@@ -13,3 +13,8 @@ export type ApiResponse<T = any> = {
 export type ApiError = {
     message: string;
 };
+
+export interface IAddComponentProps {
+    setOpen: (open: boolean) => void;
+    refetch: () => void;
+}

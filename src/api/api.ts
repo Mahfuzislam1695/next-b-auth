@@ -1,6 +1,10 @@
 import axios from "axios";
+import { getBaseUrl } from "@/config/envConfig";
+import { axiosInstance } from "@/helpers/axios/axiosInstance";
 
 const url = "https://jsonplaceholder.typicode.com";
+
+
 
 export const getUsers = async () => {
     try {
@@ -11,3 +15,14 @@ export const getUsers = async () => {
         return [];
     }
 };
+
+export const getUserAdmin = async () => {
+    try {
+        const response = await axiosInstance.get(`${getBaseUrl()}/users`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        return [];
+    }
+};
+

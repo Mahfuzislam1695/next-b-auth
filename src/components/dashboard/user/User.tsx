@@ -5,11 +5,14 @@ import { useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowMo
 import EditUser from "./EditUser";
 import { useUserData } from "@/hooks/useUserData";
 import { useAppDispatch } from "@/lib/redux/hooks";
-import { getColumns } from "@/lib/constants/tableColumns";
+import { getUserColumns } from "@/lib/constants/tableColumns";
 import { rowValue } from "@/lib/redux/features/user/userSlice";
 import CustomDialog from "@/components/share/dialog/CustomDialog";
-import UserTable from "./UserTable";
+// import UserTable from "./UserTable";
 import { EditDataProps } from "@/types/user/user.types";
+import GenericTable from "@/components/share/table/GenericTable";
+import AddUser from "./AddUser";
+import TableHeading from "@/components/share/table/TableHeading";
 
 const User = () => {
     const [editModalOpen, setEditModalOpen] = useState(false);
@@ -28,7 +31,7 @@ const User = () => {
     };
 
     // Get columns with handleEdit passed as a parameter
-    const columns = getColumns(handleEdit);
+    const columns = getUserColumns(handleEdit);
 
     const table = useReactTable({
         data: allUserData ?? [],
@@ -49,9 +52,9 @@ const User = () => {
 
     return (
         <div className="">
-            <p className="underline text-5xl font-bold text-sky-900">User</p>
+            <TableHeading name="User" />
 
-            <UserTable
+            {/* <UserTable
                 table={table}
                 isLoading={isLoading}
                 filtering={filtering}
@@ -60,6 +63,21 @@ const User = () => {
                 setFilterModalOpen={setFilterModalOpen}
                 allUserData={allUserData}
                 refetch={refetch}
+            /> */}
+
+            <GenericTable
+                table={table}
+                isLoading={isLoading}
+                filtering={filtering}
+                setFiltering={setFiltering}
+                filterModalOpen={filterModalOpen}
+                setFilterModalOpen={setFilterModalOpen}
+                tableData={allUserData ?? []}
+                refetch={refetch}
+                buttonName="Add"
+                headerName="Add User Information"
+                userName="User"
+                addComponent={<AddUser setOpen={setFilterModalOpen} refetch={refetch} />}
             />
 
             <CustomDialog
