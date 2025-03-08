@@ -4,6 +4,7 @@ import { getNewAccessToken, logout } from "@/services/auth.service";
 import { authKey } from "@/constants/auth/storageKey";
 import { IGenericErrorResponse, ResponseSuccessType } from "@/types";
 import { getBaseUrl } from "@/config/envConfig";
+import { toast } from "react-toastify";
 
 const instance = axios.create({
   baseURL: getBaseUrl(),
@@ -73,7 +74,10 @@ instance.interceptors.response.use(
         logout()
       }
     } else if (error?.response?.status === 403) {
-      logout()
+      console.error("403: Forbidden");
+      toast.error("You do not have permission to access this resource");
+      // logout()
+
     } else {
       const responseObject: IGenericErrorResponse = {
         statusCode: error?.response?.data?.statusCode || 500,

@@ -9,7 +9,11 @@ import { EditDataProps } from "@/types/user/user.types";
 import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable } from "@tanstack/react-table";
 import { useState } from "react";
 import AddAdminUser from "./AddAdminUser";
+import CustomDialog from "@/components/share/dialog/CustomDialog";
+import EditAdminUser from "./EditAdminUser";
 import { useUserAdminData } from "@/hooks/useUserData";
+// import { useFetchData } from "@/hooks/useFetchData";
+// import { getBaseUrl } from "@/config/envConfig";
 
 export default function Admin() {
     const [editModalOpen, setEditModalOpen] = useState(false);
@@ -20,6 +24,13 @@ export default function Admin() {
     const dispatch = useAppDispatch();
 
     const { isLoading, data: allAdminUserData, refetch } = useUserAdminData();
+
+    // const { isLoading, data:allAdminUserData, error, refetch } = useFetchData({
+    //     queryKey: 'userData',  // Can be a string or an array of strings
+    //     url: `${getBaseUrl()}/users`,
+    // });
+
+
 
     console.log("allAdminUserData", allAdminUserData);
 
@@ -63,6 +74,14 @@ export default function Admin() {
                 userName="User"
                 addComponent={<AddAdminUser setOpen={setFilterModalOpen} refetch={refetch} />}
             />
+
+            <CustomDialog
+                open={editModalOpen}
+                onOpenChange={setEditModalOpen}
+                title="User Information Edit"
+            >
+                <EditAdminUser setEditModalOpen={setEditModalOpen} refetch={refetch} />
+            </CustomDialog>
         </div>
     )
 }

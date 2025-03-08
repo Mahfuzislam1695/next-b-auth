@@ -1,10 +1,4 @@
-// Interface for EditUser component
-export interface IUserEditProps {
-    setEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    refetch: () => void;
-}
 
-// Interface for AddUser component
 
 
 export interface IUserTableProps {

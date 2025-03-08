@@ -18,3 +18,8 @@ export interface IAddComponentProps {
     setOpen: (open: boolean) => void;
     refetch: () => void;
 }
+
+export interface IEditComponentProps {
+    setEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    refetch: () => void;
+}

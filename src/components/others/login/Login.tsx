@@ -156,7 +156,7 @@ export default function Login() {
                             >
 
                                 {/* Sign in */}
-                                {isPending ? "Sign in..." : "Sign in"}
+                                {isPending ? "Loading..." : "Sign in"}
                             </Button>
                         </div>
                     </form>

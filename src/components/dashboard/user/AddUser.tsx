@@ -1,7 +1,7 @@
 "use client"
 
 import { Input } from "@/components/share/form";
-import { UserFormData, UserSchema } from "@/schemas/user";
+import { UserFormData, UserSchema } from "@/schemas/user/user";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
